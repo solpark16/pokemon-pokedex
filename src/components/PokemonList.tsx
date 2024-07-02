@@ -20,6 +20,7 @@ const PokemonList = () => {
       return data;
     },
     staleTime: 600000,
+    gcTime: 600000,
   });
   console.log(pokemonList);
 
@@ -27,21 +28,30 @@ const PokemonList = () => {
     return <div>로딩 중</div>;
   }
   return (
-    <ul>
+    <ul className="grid grid-cols-6 gap-3 p-[30px]">
       {pokemonList.map((pokemon: Pokemon) => {
         return (
-          <Link key={pokemon.id} href={`/${pokemon.id}`}>
-            <li>
+          <li
+            key={pokemon.id}
+            className="text-center box-border bg-white text-black p-2 rounded-2xl"
+          >
+            <Link className="w-full" href={`/${pokemon.id}`}>
               <Image
                 src={pokemon.sprites.front_default}
                 width={100}
                 height={100}
                 alt={pokemon.korean_name}
+                className="mx-auto"
               />
-              <p>{pokemon.korean_name}</p>
-              <p>도감번호: {pokemon.id}</p>
-            </li>
-          </Link>
+              <p className="flex justify-center items-center gap-1">
+                <span className="bg-black text-white rounded px-1 text-xs">
+                  {String(pokemon.id).padStart(4, "0")}
+                </span>{" "}
+                <span className="font-bold">{pokemon.korean_name}</span>
+              </p>
+              {/* <p>도감번호: {pokemon.id}</p> */}
+            </Link>
+          </li>
         );
       })}
     </ul>
