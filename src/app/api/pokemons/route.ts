@@ -5,13 +5,11 @@ const TOTAL_POKEMON = 1025;
 
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
-  console.log(searchParams);
   const offset = parseInt(searchParams.get("offset") ?? "0", 10);
   const limit = parseInt(searchParams.get("limit") ?? "48", 10);
 
   try {
     const allPokemonPromises = Array.from({ length: limit }, (_, index) => {
-      console.log(offset + index);
       const id = offset + index + 1;
       if (id <= TOTAL_POKEMON) {
         return Promise.all([
