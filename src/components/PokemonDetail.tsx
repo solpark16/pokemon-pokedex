@@ -4,25 +4,29 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Type = {
-  type: {
-    korean_name: string;
-  };
-};
+// type Type = {
+//   type: {
+//     korean_name: string;
+//   };
+// };
 
-type Ability = {
-  ability: {
-    korean_name: string;
-  };
-};
+// type Ability = {
+//   ability: {
+//     korean_name: string;
+//   };
+// };
 
-type Move = {
-  move: {
-    korean_name: string;
-  };
-};
+// type Move = {
+//   move: {
+//     korean_name: string;
+//   };
+// };
 
-const PokemonDetail = ({ pokemon }: { pokemon: Pokemon }) => {
+const PokemonDetail = ({
+  pokemon,
+}: {
+  pokemon: Pokemon;
+}): React.JSX.Element => {
   return (
     <div className="w-[800px] mx-auto p-8 bg-white text-black text-center rounded-2xl my-8 flex gap-3 flex-col">
       <div className="text-center">
@@ -44,7 +48,7 @@ const PokemonDetail = ({ pokemon }: { pokemon: Pokemon }) => {
       <div className="flex justify-center gap-3">
         <p className="flex gap-2">
           타입:
-          {pokemon.types.map((type: Type) => {
+          {pokemon.types.map((type) => {
             return (
               <span className="bg-orange-600 text-white rounded px-1 w-fit">
                 {type.type.korean_name}
@@ -54,7 +58,7 @@ const PokemonDetail = ({ pokemon }: { pokemon: Pokemon }) => {
         </p>
         <p className="flex gap-2">
           특성:
-          {pokemon.abilities.map((ability: Ability) => {
+          {pokemon.abilities.map((ability) => {
             return (
               <span className="bg-green-600 text-white rounded px-1 w-fit">
                 {ability.ability.korean_name}
@@ -66,7 +70,7 @@ const PokemonDetail = ({ pokemon }: { pokemon: Pokemon }) => {
       <p className="break-keep	">
         기술:
         <br />
-        {pokemon.moves.map((move: Move) => {
+        {pokemon.moves.map((move) => {
           return <>{move.move.korean_name} </>;
         })}
       </p>
