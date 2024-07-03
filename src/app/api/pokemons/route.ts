@@ -1,20 +1,27 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-const TOTAL_POKEMON = 151;
+const TOTAL_POKEMON = 1025;
 
 export const GET = async (request: Request) => {
+  const { searchParams } = new URL(request.url);
+  console.log(searchParams);
+  const offset = parseInt(searchParams.get("offset") ?? "0", 10);
+  const limit = parseInt(searchParams.get("limit") ?? "48", 10);
+
   try {
-    const allPokemonPromises = Array.from(
-      { length: TOTAL_POKEMON },
-      (_, index) => {
-        const id = index + 1;
+    const allPokemonPromises = Array.from({ length: limit }, (_, index) => {
+      console.log(offset + index);
+      const id = offset + index + 1;
+      if (id <= TOTAL_POKEMON) {
         return Promise.all([
           axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`),
           axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`),
         ]);
+      } else {
+        return null;
       }
-    );
+    }).filter(Boolean) as Promise<[AxiosResponse, AxiosResponse]>[];
 
     const allPokemonResponses = await Promise.all(allPokemonPromises);
 
@@ -26,7 +33,7 @@ export const GET = async (request: Request) => {
         return { ...response.data, korean_name: koreanName?.name || null };
       }
     );
-
+    // console.log(NextResponse.json(allPokemonData));
     return NextResponse.json(allPokemonData);
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch data" });
