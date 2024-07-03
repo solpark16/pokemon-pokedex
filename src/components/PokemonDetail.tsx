@@ -4,31 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-// type Type = {
-//   type: {
-//     korean_name: string;
-//   };
-// };
-
-// type Ability = {
-//   ability: {
-//     korean_name: string;
-//   };
-// };
-
-// type Move = {
-//   move: {
-//     korean_name: string;
-//   };
-// };
-
 const PokemonDetail = ({
   pokemon,
 }: {
   pokemon: Pokemon;
 }): React.JSX.Element => {
   return (
-    <div className="w-[800px] mx-auto p-8 bg-white text-black text-center rounded-2xl my-8 flex gap-3 flex-col">
+    <div className="w-[800px] mx-auto p-8 bg-white text-black text-center rounded-2xl my-8 flex gap-3 flex-col items-center">
       <div className="text-center">
         <h2 className="text-4xl	font-extrabold mb-2">{pokemon.korean_name}</h2>
         <p className="bg-black text-white rounded px-1 w-fit mx-auto">
@@ -75,7 +57,7 @@ const PokemonDetail = ({
         })}
       </p>
 
-      <Link href={"/"}>
+      <Link className="w-fit" href={"/"}>
         <button className="bg-blue-600 p-3 text-white rounded-2xl w-fit">
           뒤로 가기
         </button>

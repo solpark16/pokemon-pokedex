@@ -3,6 +3,7 @@
 import { QueryFunctionContext, useInfiniteQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 
@@ -31,7 +32,6 @@ const PokemonList = (): React.JSX.Element => {
       return data;
     },
     getNextPageParam: (lastPage, allPages) => {
-      console.log(lastPage.length);
       if (lastPage.length < 48) {
         return undefined; // 마지막 페이지에 도달하면 더 이상 요청하지 않음
       }
@@ -61,7 +61,6 @@ const PokemonList = (): React.JSX.Element => {
       }
     };
   }, [fetchNextPage, hasNextPage]);
-  console.log(pokemonList);
 
   if (isPending || !pokemonList) {
     return <div className="text-center">포켓몬을 데려오는 중입니다...</div>;
@@ -74,29 +73,30 @@ const PokemonList = (): React.JSX.Element => {
           <React.Fragment key={pageIndex}>
             {page.map((pokemon: Pokemon) => {
               return (
-                <li
-                  key={pokemon.id}
-                  className="text-center cursor-pointer box-border bg-white text-black p-2 rounded-2xl hover:bg-gray-400 transition"
-                  onClick={() => {
-                    router.push(`/${pokemon.id}`);
-                  }}
-                >
-                  <Image
-                    src={pokemon.sprites.front_default}
-                    width={100}
-                    height={100}
-                    alt={pokemon.korean_name}
-                    className="mx-auto"
-                  />
-                  <p className="flex justify-center items-center gap-1">
-                    <span className="bg-black text-white rounded px-1 text-xs">
-                      {String(pokemon.id).padStart(4, "0")}
-                    </span>{" "}
-                    <span className="font-bold">
-                      {pokemon.korean_name ? pokemon.korean_name : pokemon.name}
-                    </span>
-                  </p>
-                </li>
+                <Link key={pokemon.id} href={`/${pokemon.id}`}>
+                  <li
+                    key={pokemon.id}
+                    className="text-center cursor-pointer box-border bg-white text-black p-2 rounded-2xl hover:bg-gray-400 transition"
+                  >
+                    <Image
+                      src={pokemon.sprites.front_default}
+                      width={100}
+                      height={100}
+                      alt={pokemon.korean_name}
+                      className="mx-auto"
+                    />
+                    <p className="flex justify-center items-center gap-1">
+                      <span className="bg-black text-white rounded px-1 text-xs">
+                        {String(pokemon.id).padStart(4, "0")}
+                      </span>{" "}
+                      <span className="font-bold">
+                        {pokemon.korean_name
+                          ? pokemon.korean_name
+                          : pokemon.name}
+                      </span>
+                    </p>
+                  </li>
+                </Link>
               );
             })}
           </React.Fragment>
