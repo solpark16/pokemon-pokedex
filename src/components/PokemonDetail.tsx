@@ -32,7 +32,10 @@ const PokemonDetail = ({
           타입:
           {pokemon.types.map((type) => {
             return (
-              <span className="bg-orange-600 text-white rounded px-1 w-fit">
+              <span
+                key={type.type.korean_name}
+                className="bg-orange-600 text-white rounded px-1 w-fit"
+              >
                 {type.type.korean_name}
               </span>
             );
@@ -42,7 +45,10 @@ const PokemonDetail = ({
           특성:
           {pokemon.abilities.map((ability) => {
             return (
-              <span className="bg-green-600 text-white rounded px-1 w-fit">
+              <span
+                key={ability.ability.korean_name}
+                className="bg-green-600 text-white rounded px-1 w-fit"
+              >
                 {ability.ability.korean_name}
               </span>
             );
