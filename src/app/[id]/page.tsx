@@ -12,7 +12,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = params;
   const { data: pokemon } = await axios.get<Pokemon>(
-    `http://localhost:3000/api/pokemons/${id}`
+    `https://pokemon-pokedex-chi.vercel.app/api/pokemons/${id}`
   );
   return {
     title: `${pokemon.korean_name} | Pokédex`,
@@ -24,7 +24,7 @@ const PokemonDetailPage = async ({
 }: Props): Promise<React.JSX.Element> => {
   const { id } = params;
   const { data: pokemon } = await axios.get<Pokemon>(
-    `http://localhost:3000/api/pokemons/${id}`
+    `https://pokemon-pokedex-chi.vercel.app/api/pokemons/${id}`
   );
 
   return (
