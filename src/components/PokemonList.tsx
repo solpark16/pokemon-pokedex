@@ -4,11 +4,9 @@ import { QueryFunctionContext, useInfiniteQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 
 const PokemonList = (): React.JSX.Element => {
-  const router = useRouter();
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   const {
@@ -63,7 +61,18 @@ const PokemonList = (): React.JSX.Element => {
   }, [fetchNextPage, hasNextPage]);
 
   if (isPending || !pokemonList) {
-    return <div className="text-center">포켓몬을 데려오는 중입니다...</div>;
+    return (
+      <div className="text-center mt-9">
+        <Image
+          src="/images/mew.gif"
+          alt="loading-mew"
+          width={300}
+          height={300}
+          className="mx-auto"
+        />
+        <p className="text-3xl mt-5">포켓몬을 데려오는 중입니다...</p>
+      </div>
+    );
   }
 
   return (
