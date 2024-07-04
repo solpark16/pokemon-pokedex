@@ -7,6 +7,26 @@ const PokemonDetail = ({
 }: {
   pokemon: Pokemon;
 }): React.JSX.Element => {
+  const pokemonTypes: { [key: string]: string } = {
+    grass: "bg-[#66a945]",
+    poison: "bg-[#735198]",
+    fire: "bg-[#e56c3e]",
+    water: "bg-[#5185c5]",
+    normal: "bg-[#949495]",
+    flying: "bg-[#a2c3e7]",
+    bug: "bg-[#9fa244]",
+    ground: "bg-[#9c7743]",
+    fairy: "bg-[#dab4d4]",
+    psychic: "bg-[#dd6b7b]",
+    fighting: "bg-[#e09c40]",
+    rock: "bg-[#bfb889]",
+    ghost: "bg-[#684870]",
+    steel: "bg-[#69a9c7]",
+    electric: "bg-[#fbb917]",
+    ice: "bg-[#6dc8eb]",
+    dragon: "bg-[#535ca8]",
+    dark: "bg-[#4c4948]",
+  };
   return (
     <div className="w-[800px] mx-auto p-8 bg-white text-black text-center rounded-2xl my-8 flex gap-3 flex-col items-center">
       <div className="text-center">
@@ -31,8 +51,10 @@ const PokemonDetail = ({
           {pokemon.types.map((type) => {
             return (
               <span
-                key={type.type.korean_name}
-                className="bg-orange-600 text-white rounded px-1 w-fit"
+                key={type.type.name}
+                className={`${
+                  pokemonTypes[type.type.name]
+                } text-white rounded px-1 w-fit`}
               >
                 {type.type.korean_name}
               </span>
@@ -44,7 +66,7 @@ const PokemonDetail = ({
           {pokemon.abilities.map((ability) => {
             return (
               <span
-                key={ability.ability.korean_name}
+                key={ability.ability.name}
                 className="bg-green-600 text-white rounded px-1 w-fit"
               >
                 {ability.ability.korean_name}
@@ -57,7 +79,7 @@ const PokemonDetail = ({
         기술:
         <br />
         {pokemon.moves.map((move) => {
-          return <>{move.move.korean_name} </>;
+          return <span key={move.move.name}>{move.move.korean_name} </span>;
         })}
       </p>
 
