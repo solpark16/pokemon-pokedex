@@ -41,7 +41,7 @@ const PokemonDetail = ({
         </p>
         <p className="flex gap-2">
           특성:
-          {/* {pokemon.abilities.map((ability) => {
+          {pokemon.abilities.map((ability) => {
             return (
               <span
                 key={ability.ability.korean_name}
@@ -50,15 +50,15 @@ const PokemonDetail = ({
                 {ability.ability.korean_name}
               </span>
             );
-          })} */}
+          })}
         </p>
       </div>
       <p className="break-keep">
         기술:
         <br />
-        {/* {pokemon.moves.map((move) => {
+        {pokemon.moves.map((move) => {
           return <>{move.move.korean_name} </>;
-        })} */}
+        })}
       </p>
 
       <Link className="w-fit" href={"/"}>
