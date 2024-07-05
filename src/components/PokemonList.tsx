@@ -22,7 +22,9 @@ const PokemonList = (): React.JSX.Element => {
       pageParam = 0,
     }: QueryFunctionContext): Promise<Pokemon[]> => {
       const { data } = await axios.get<Pokemon[]>(
-        `https://pokemon-pokedex-chi.vercel.app/api/pokemons`,
+        `/api/pokemons`,
+
+        // `http://localhost:3000/api/pokemons`,
         {
           params: { offset: pageParam, limit: 48 },
         }
