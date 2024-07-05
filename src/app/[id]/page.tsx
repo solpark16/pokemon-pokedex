@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 
 import type { Metadata } from "next";
+import { Pokemon } from "@/types/pokemon";
 
 type Props = {
   params: { id: string };

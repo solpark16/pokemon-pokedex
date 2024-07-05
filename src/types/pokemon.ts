@@ -1,4 +1,4 @@
-type Pokemon = {
+export type Pokemon = {
   id: number;
   name: string;
   korean_name: string;

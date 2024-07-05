@@ -1,5 +1,6 @@
 "use client";
 
+import { Pokemon } from "@/types/pokemon";
 import { QueryFunctionContext, useInfiniteQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
