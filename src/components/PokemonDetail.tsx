@@ -27,6 +27,7 @@ const PokemonDetail = ({
     dragon: "bg-[#535ca8]",
     dark: "bg-[#4c4948]",
   };
+  console.log(pokemon.sprites.front_default);
   return (
     <div className="w-[800px] mx-auto p-8 bg-white text-black text-center rounded-2xl my-8 flex gap-3 flex-col items-center">
       <div className="text-center">
