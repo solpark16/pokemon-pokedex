@@ -27,7 +27,6 @@ const PokemonDetail = ({
     dragon: "bg-[#535ca8]",
     dark: "bg-[#4c4948]",
   };
-  console.log(pokemon.sprites.front_default);
   return (
     <div className="w-[800px] mx-auto p-8 bg-white text-black text-center rounded-2xl my-8 flex gap-3 flex-col items-center">
       <div className="text-center">
@@ -36,13 +35,21 @@ const PokemonDetail = ({
           {String(pokemon.id).padStart(4, "0")}
         </p>
       </div>
-      <Image
+      {/* Image 태그 vercel 내 최적화 제한 초과로 img 태그로 변경했습니다.  */}
+      <img
         src={pokemon.sprites.front_default}
         width={200}
         height={200}
         alt={pokemon.korean_name}
         className="mx-auto"
       />
+      {/* <Image
+        src={pokemon.sprites.front_default}
+        width={200}
+        height={200}
+        alt={pokemon.korean_name}
+        className="mx-auto"
+      /> */}
       <p>
         키: {pokemon.height / 10}m 무게: {pokemon.weight / 10}kg
       </p>

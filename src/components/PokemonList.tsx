@@ -21,14 +21,9 @@ const PokemonList = (): React.JSX.Element => {
     queryFn: async ({
       pageParam = 0,
     }: QueryFunctionContext): Promise<Pokemon[]> => {
-      const { data } = await axios.get<Pokemon[]>(
-        `/api/pokemons`,
-
-        // `http://localhost:3000/api/pokemons`,
-        {
-          params: { offset: pageParam, limit: 48 },
-        }
-      );
+      const { data } = await axios.get<Pokemon[]>(`/api/pokemons`, {
+        params: { offset: pageParam, limit: 48 },
+      });
       return data;
     },
     getNextPageParam: (lastPage, allPages) => {
@@ -89,13 +84,21 @@ const PokemonList = (): React.JSX.Element => {
                     key={pokemon.id}
                     className="text-center cursor-pointer box-border bg-white text-black p-2 rounded-2xl hover:bg-gray-400 transition"
                   >
-                    <Image
+                    {/* Image 태그 vercel 내 최적화 제한 초과로 img 태그로 변경했습니다.  */}
+                    <img
                       src={pokemon.sprites.front_default}
                       width={100}
                       height={100}
                       alt={pokemon.korean_name}
                       className="mx-auto"
                     />
+                    {/* <Image
+                      src={pokemon.sprites.front_default}
+                      width={100}
+                      height={100}
+                      alt={pokemon.korean_name}
+                      className="mx-auto"
+                    /> */}
                     <p className="flex justify-center items-center gap-1">
                       <span className="bg-black text-white rounded px-1 text-xs">
                         {String(pokemon.id).padStart(4, "0")}
