@@ -73,6 +73,16 @@ const PokemonList = (): React.JSX.Element => {
     );
   }
 
+  if (isError) {
+    return (
+      <div className="text-center mt-9">
+        <p className="text-3xl mt-5">
+          포켓몬을 데려오는 동안 오류가 발생했습니다.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <ul className="grid grid-cols-6 gap-3 p-[30px]">
