@@ -37,20 +37,29 @@ const PokemonList = (): React.JSX.Element => {
     gcTime: 600000,
     initialPageParam: 0,
   });
+
   useEffect(() => {
+    // IntersectionObserver는 특정 요소가 뷰포트 내에 들어왔는지 감시하는 객체.
+    // entries는 마시하고 있는 요소들의 배열.
+    // isIntersecting 속성은 요소가 뷰포트에 들어왔는지를 나타낸다.
+    // hasNextPage를 통해 다음 페이지 존재 여부를 나타내고, 두 조건이 충족되었다면 fetchNextPage를 통해 다음 페이지의 데이터를 불러온다.
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasNextPage) {
           fetchNextPage();
         }
       },
+      // 요소가 100% 뷰포트에 들어왔을 때 콜백이 실행되도록 한다.
       { threshold: 1.0 }
     );
 
+    // 검사할 요소 설정. loadMoreRef는 무한 스크롤의 트리거가 되는 DOM 요소를 가리킨다.
     if (loadMoreRef.current) {
+      // 해당 요소가 뷰포트에 들어오는지를 감시하도록 설정한다.
       observer.observe(loadMoreRef.current);
     }
 
+    // 클린 업 함수. 컴포넌트가 언마운트되거나 useEffect가 다시 호출될 때 감시를 중지한다.
     return () => {
       if (loadMoreRef.current) {
         observer.unobserve(loadMoreRef.current);
