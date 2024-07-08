@@ -8,12 +8,12 @@
 
 - 메인 페이지
   - 포켓몬 리스트를 볼 수 있습니다. 무한 스크롤 기능으로 48마리씩 추가하여 보여줍니다.
-![screencapture-localhost-3000-2024-07-07-22_24_32](https://github.com/solpark16/pokemon-pokedex/assets/79960346/13f3f124-a06c-4d79-bc57-6a62b1ca1b9a)
 - 디테일 페이지
   - 클릭한 포켓몬에 대한 정보를 볼 수 있습니다.
+
+## 페이지 이미지
+![screencapture-localhost-3000-2024-07-07-22_24_32](https://github.com/solpark16/pokemon-pokedex/assets/79960346/13f3f124-a06c-4d79-bc57-6a62b1ca1b9a)
 ![screencapture-localhost-3000-151-2024-07-07-22_25_09](https://github.com/solpark16/pokemon-pokedex/assets/79960346/0be8f1fd-a18c-4427-951b-0451ef2f1c88)
-
-
 
 ## 필수 구현 사항
 
